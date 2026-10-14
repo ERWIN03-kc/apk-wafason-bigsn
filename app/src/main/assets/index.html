@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>WAFA Sound</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&display=swap">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;background:#000;color:#fff;font-family:Arial,sans-serif}
+body{display:flex;justify-content:center}
+#app{width:100%;max-width:480px;height:100%;position:relative;overflow:hidden;
+background:linear-gradient(112deg,transparent 22%,rgba(160,205,255,.6) 23%,rgba(80,140,255,.25) 25%,transparent 29%,transparent 52%,rgba(160,205,255,.3) 53%,transparent 56%),radial-gradient(rgba(170,210,255,.16) 1.2px,transparent 1.7px) 0 0/16px 16px,radial-gradient(ellipse at 75% 8%,rgba(70,130,255,.85),transparent 50%),radial-gradient(ellipse at 10% 100%,rgba(0,170,255,.45),transparent 50%),radial-gradient(ellipse at 100% 70%,rgba(90,60,255,.4),transparent 45%),linear-gradient(170deg,#0b2bd1 0%,#0a1a8f 45%,#050c4a 100%)}
+#app:after{content:"";position:absolute;inset:-20% -60%;z-index:0;pointer-events:none;background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.16) 50%,transparent 60%);animation:sw 6s linear infinite}
+@keyframes sw{from{transform:translateX(-40%)}to{transform:translateX(40%)}}
+#app>.scr{z-index:1}
+#app:before{content:"WAFA";position:absolute;top:38%;left:-8%;font-family:'Bungee','Arial Black',Impact,sans-serif;font-weight:900;font-size:170px;color:transparent;-webkit-text-stroke:2px rgba(160,210,255,.25);text-shadow:0 0 40px rgba(80,150,255,.5);transform:rotate(-12deg) skewX(-8deg);white-space:nowrap;pointer-events:none}
+.scr{position:absolute;inset:0;padding:env(safe-area-inset-top,0px) 14px env(safe-area-inset-bottom,0px);display:none;flex-direction:column;align-items:center}
+.scr.on{display:flex}
+.logo{font-family:'Bungee','Arial Black',Impact,sans-serif;font-weight:900;font-size:96px;line-height:1;margin:44px 0 6px;transform:skewX(-8deg);background:linear-gradient(180deg,#ffffff 0%,#d9eeff 28%,#74c6ff 55%,#3a78ff 80%,#1b3fd6 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2px #eaf5ff;filter:drop-shadow(0 3px 0 #0a2a99) drop-shadow(0 7px 0 #061a66) drop-shadow(0 14px 12px rgba(0,0,40,.7)) drop-shadow(0 0 22px rgba(80,170,255,.85));letter-spacing:3px}
+.logo.s{font-size:40px;margin:12px 0 4px;-webkit-text-stroke:1px #fff;filter:drop-shadow(0 2px 0 #0a2a99) drop-shadow(0 5px 5px rgba(0,0,40,.7)) drop-shadow(0 0 10px rgba(80,170,255,.8))}
+.sub{letter-spacing:6px;font-size:12px;font-weight:700;margin-bottom:34px;color:#d4ecff;text-shadow:0 0 12px #4f9bff}
+.btn{width:190px;padding:15px;margin:9px 0;background:linear-gradient(rgba(140,190,255,.3),rgba(10,30,140,.8));border:1px solid rgba(180,215,255,.75);border-radius:12px;color:#fff;font-weight:700;font-size:14px;letter-spacing:3px;box-shadow:0 0 18px rgba(70,140,255,.6),inset 0 1px 0 rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.btn:active{background:#2f6bff}
+.btn.g{background:linear-gradient(#4fd0ff,#1560ff);border-color:#d4efff}
+.foot{margin-top:auto;margin-bottom:14px;font-size:10px;opacity:.75}
+.bar{display:flex;gap:8px;width:100%;align-items:center}
+.ib{display:flex;gap:6px;width:100%;align-items:center;margin:14px 0 10px}
+.ib i{width:30px;height:24px;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:13px;color:#dff0ff;background:linear-gradient(rgba(140,190,255,.3),rgba(5,15,90,.85));border:1px solid rgba(180,215,255,.6);border-radius:5px;box-shadow:0 0 8px rgba(70,140,255,.5)}
+.ib svg{width:15px;height:15px;stroke:#dff0ff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ib b{margin-left:auto;font-size:11px;letter-spacing:1px;padding:4px 8px;border-radius:5px;background:linear-gradient(#4fd0ff,#1560ff);border:1px solid #d4efff}
+.bar input[type=search]{flex:1;min-width:0;padding:9px 12px;border-radius:20px;border:1px solid #7a8cff;background:rgba(0,0,30,.7);color:#fff;font-size:13px;outline:0}
+.sm{padding:9px 12px;border-radius:20px;border:1px solid #7a8cff;background:rgba(0,0,30,.7);color:#fff;font-size:12px;font-weight:700}
+.sm.g{background:linear-gradient(#4fd0ff,#1560ff);border-color:#d4efff}
+.now{width:100%;margin-top:10px;padding:10px 12px;background:rgba(0,0,30,.75);border:1px solid #556bff;border-radius:12px}
+.nt{display:flex;align-items:center;gap:10px}
+.eq{display:flex;gap:3px;align-items:flex-end;height:26px}
+.eq i{width:5px;height:6px;background:#7fd6ff;border-radius:2px}
+.eq.on i{animation:b .6s infinite alternate}
+.eq i:nth-child(2){animation-delay:.15s}.eq i:nth-child(3){animation-delay:.3s}.eq i:nth-child(4){animation-delay:.1s}
+@keyframes b{to{height:26px}}
+#nm{font-weight:700;font-size:15px;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.seek{display:flex;gap:6px;align-items:center;font-size:10px;margin-top:8px}
+input[type=range]{flex:1;accent-color:#4fc3ff;min-width:0}
+#list{width:100%;flex:1;margin:10px 0;background:rgba(0,0,0,.78);border:1px solid #334;border-radius:12px;overflow-y:auto;padding:6px 0}
+.row{display:flex;align-items:center;padding:9px 10px 9px 12px;font-size:13px;font-weight:700}
+.row span{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.row.act{background:linear-gradient(90deg,#1a5bff,#3fb6ff)}
+.row button{background:0;border:0;color:#fff;font-size:16px;padding:2px 6px;opacity:.8}
+.empty{padding:30px 16px;text-align:center;font-size:13px;opacity:.8;line-height:1.6}
+.ctl{display:flex;gap:12px;align-items:center;justify-content:center;margin-bottom:8px}
+.ctl button{width:46px;height:46px;border-radius:50%;border:1px solid #556bff;background:rgba(0,0,30,.8);color:#fff;font-size:17px}
+.ctl .pl{width:64px;height:64px;font-size:24px;background:linear-gradient(#5fd6ff,#1560ff);border-color:#fff;box-shadow:0 0 20px rgba(80,170,255,.8)}
+.ctl button.on{color:#7fd6ff;border-color:#7fd6ff}
+.vol{display:flex;gap:6px;align-items:center;width:100%;font-size:14px;margin-bottom:10px}
+.grid{display:grid;flex:1;min-height:0;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:10px;width:100%;margin-top:12px;padding:12px;background:rgba(0,10,80,.6);border:1px solid #556bff;border-radius:14px}
+.pad{background:linear-gradient(rgba(140,190,255,.28),rgba(5,15,90,.9));border:1px solid rgba(180,215,255,.6);border-radius:12px;color:#fff;font-weight:700;font-size:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(70,140,255,.4);touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.pad small{font-size:10px;opacity:.75;font-weight:400}
+.pad.hit{background:linear-gradient(#7fd6ff,#1560ff);box-shadow:0 0 22px rgba(100,200,255,.9)}
+.pad:active{background:linear-gradient(#7fd6ff,#1560ff)}
+.back{margin:12px 0;align-self:flex-end;background:#111;color:#fff;border:1px solid #889;border-radius:6px;padding:7px 16px;font-size:11px;font-weight:700}
+#md{position:absolute;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:20px;z-index:9}
+#md.on{display:flex}
+.card{width:100%;background:#0b1170;border:1px solid #7a8cff;border-radius:14px;padding:18px;box-shadow:0 0 30px rgba(80,110,255,.6)}
+.card h3{margin:0 0 12px;letter-spacing:2px}
+.card label{font-size:12px;display:block;margin:10px 0 4px}
+.card input[type=text]{width:100%;padding:11px;border-radius:8px;border:1px solid #7a8cff;background:#050838;color:#fff;font-size:14px;outline:0}
+.fp{display:flex;align-items:center;gap:10px;padding:14px 12px;border:1px dashed #7a8cff;border-radius:8px;font-size:12px;text-align:center;background:#050838;overflow:hidden;cursor:pointer;min-height:48px}
+.fp span{display:block;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fp .pick{border:1px solid #9fd2ff;background:linear-gradient(#4fd0ff,#1560ff);color:#fff;border-radius:7px;padding:9px 11px;font-weight:700;white-space:nowrap}
+.modeTabs{display:flex;gap:8px;margin:8px 0}.modeTabs button{flex:1;padding:10px;border:1px solid #7a8cff;border-radius:8px;background:#050838;color:#fff;font-weight:700}.modeTabs button.active{background:linear-gradient(#4fd0ff,#1560ff);border-color:#d4efff}
+.urlField{display:none}.urlField.show{display:block}.urlField input{width:100%;padding:11px;border-radius:8px;border:1px solid #7a8cff;background:#050838;color:#fff;font-size:13px;margin-top:5px}
+.fp input{display:block;position:absolute;width:1px;height:1px;opacity:0;left:-9999px;pointer-events:none}
+.acts{display:flex;gap:8px;margin-top:16px}.acts .sm{flex:1;border-radius:8px;padding:11px}
+#msg{font-size:11px;margin-top:8px;color:#9fe0ff;min-height:14px}
+.ov{position:absolute;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:20px;z-index:9}
+.ov.on{display:flex}
+.card select{width:100%;padding:11px;border-radius:8px;border:1px solid #7a8cff;background:#050838;color:#fff;font-size:14px}
+#mn{position:absolute;top:56px;left:14px;z-index:8;display:none;flex-direction:column;min-width:210px;background:linear-gradient(#10279e,#07124f);border:1px solid rgba(180,215,255,.7);border-radius:12px;box-shadow:0 0 24px rgba(70,140,255,.6);overflow:hidden}
+#mn.on{display:flex;pointer-events:auto}
+#mn{pointer-events:none}#mn.on{pointer-events:auto}
+button,.ib i{touch-action:manipulation;cursor:pointer;pointer-events:auto}
+#mn button{background:0;border:0;border-bottom:1px solid rgba(180,215,255,.2);color:#fff;text-align:left;padding:13px 14px;font-size:13px;font-weight:700}
+#mn button:active{background:#2f6bff}
+#ts{position:absolute;left:50%;bottom:90px;transform:translateX(-50%);z-index:20;background:rgba(5,12,70,.95);border:1px solid #9fd2ff;border-radius:20px;padding:9px 16px;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .25s;white-space:nowrap}
+#ts.on{opacity:1}
+.ib i.act{background:linear-gradient(#4fd0ff,#1560ff);border-color:#fff}
+#tp{font-size:10px;opacity:.85;white-space:nowrap}
+</style></head><body>
+<div id="app">
+ <div class="scr on" id="home">
+  <div class="logo">WAFA</div>
+  <div class="sub">SOUND • 48 NOT</div>
+  <button class="btn" onclick="go('main')">MAIN</button>
+  <button class="btn" onclick="go('doremi')">DOREMI</button>
+  <button class="btn g" onclick="openAdd()">+ ADD SOUND</button>
+  <div class="foot" id="cnt">0 sound tersimpan • WAFA Sound</div>
+ </div>
+  <div class="scr" id="main">
+  <div class="ib"><i>☰</i><i><svg viewBox="0 0 24 24"><path d="M7 7l10 10-5 5V2l5 5L7 17"/></svg></i><i>⚙</i><i>◎</i><i><svg viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0M12 20h.01"/></svg></i><i><svg viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 11v2"/></svg></i><b>48 NOT</b></div>
+  <div class="bar"><input id="q" type="search" placeholder="Cari sound..." oninput="draw()"><button class="sm g" onclick="openAdd()">+ ADD</button></div>
+  <div class="now">
+   <div class="nt"><div class="eq" id="eq"><i></i><i></i><i></i><i></i></div><div id="nm">Belum ada sound</div><small id="tp">TEMPO: 130 AUTO</small></div>
+   <div class="seek"><span id="t1">0:00</span><input id="sk" type="range" min="0" max="100" value="0"><span id="t2">0:00</span></div>
+  </div>
+  <div id="list"></div>
+  <div class="ctl"><button id="sh" onclick="sf=!sf;this.classList.toggle('on',sf)">🔀</button><button onclick="step(-1)">⏮</button><button class="pl" id="pb" onclick="toggle()">▶</button><button onclick="step(1)">⏭</button><button id="rp" onclick="rp=!rp;this.classList.toggle('on',rp)">🔁</button></div>
+  <div class="vol">🔊<input id="vl" type="range" min="0" max="1" step="0.05" value="1"></div>
+  <button class="back" style="margin:0 0 10px" onclick="go('home')">KEMBALI</button>
+ </div>
+ <div class="scr" id="doremi">
+  <div class="logo s" style="font-size:44px">DOREMI</div>
+  <div class="grid" id="grid"></div>
+  <button class="back" onclick="go('home')">KEMBALI</button>
+ </div>
+ <div id="md"><div class="card">
+  <h3>ADD SOUND</h3>
+  <label>Nama sound</label><input id="in" type="text" placeholder="contoh: brondong tua" maxlength="60">
+  <div class="modeTabs"><button type="button" id="localTab" class="active" onclick="setAddMode('file')">FILE HP (OFFLINE)</button><button type="button" id="urlTab" onclick="setAddMode('url')">URL (ONLINE)</button></div>
+  <div id="fileMode"><label>File musik</label><div class="fp" onclick="chooseMusic()"><span id="fn">Pilih file musik...</span><button type="button" class="pick" onclick="event.stopPropagation();chooseMusic()">PILIH FILE</button><input id="ff" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg,.aac,.flac,.opus"></div></div>
+  <div id="urlMode" class="urlField"><label>URL audio langsung</label><input id="audioUrl" type="url" inputmode="url" placeholder="https://contoh.com/musik.mp3"><div style="font-size:11px;opacity:.8;margin-top:6px;line-height:1.5">Harus berupa link file audio langsung (MP3, M4A, WAV, OGG, atau stream audio). Mode URL hanya online dan butuh internet saat diputar. File dari HP tetap offline. Link share TikTok biasanya bukan link audio langsung dan tidak bisa diputar sebagai musik di sini.</div></div>
+  <div id="msg"></div>
+  <div class="acts"><button class="sm" onclick="closeAdd()">BATAL</button><button class="sm g" id="sv" onclick="save()">UPLOAD</button></div>
+ </div></div>
+ <div id="mn" onclick="event.stopPropagation()"><button type="button" onclick="$('mn').classList.remove('on');openAdd()">+ Tambah sound</button><button type="button" onclick="$('mn').classList.remove('on');sortAZ()">Urutkan A-Z</button><button type="button" onclick="$('mn').classList.remove('on');delAll()">Hapus semua sound</button><button type="button" onclick="$('mn').classList.remove('on');go('home')">Menu awal</button></div>
+ <div class="ov" id="st"><div class="card">
+  <h3>PENGATURAN</h3>
+  <label>Tempo: <span id="tv">100%</span></label><input id="tr" type="range" min="50" max="150" value="100" style="width:100%">
+  <label>Timer mati otomatis</label><select id="tm"><option value="0">Mati</option><option value="5">5 menit</option><option value="10">10 menit</option><option value="15">15 menit</option><option value="30">30 menit</option><option value="60">60 menit</option></select>
+  <div class="acts"><button class="sm g" onclick="$('st').classList.remove('on')">SELESAI</button></div>
+ </div></div>
+ <div id="ts"></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+let T=[],cur=-1,playing=false,sf=false,rp=false,a=new Audio(),url=null,mem=[],dbp=null,ac=null;
+function idb(){if(dbp)return dbp;return dbp=new Promise(r=>{try{const q=indexedDB.open('wafa',1);q.onupgradeneeded=()=>q.result.createObjectStore('s',{keyPath:'id',autoIncrement:true});q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}})}
+async function op(m,v){const d=await idb();if(!d){if(m==='getAll')return mem;if(m==='add'){v.id=Date.now();mem.push(v)}if(m==='delete')mem=mem.filter(x=>x.id!==v);return}
+ return new Promise(r=>{const s=d.transaction('s',m==='getAll'?'readonly':'readwrite').objectStore('s');const q=s[m](v);q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)})}
+async function load(){T=(await op('getAll'))||[];$('cnt').textContent=T.length+' sound tersimpan • WAFA Sound';draw()}
+function go(s){document.querySelectorAll('.scr').forEach(e=>e.classList.toggle('on',e.id===s));if(s!=='main')stop()}
+let addMode='file';
+function setAddMode(mode){addMode=mode;$('fileMode').style.display=mode==='file'?'block':'none';$('urlMode').classList.toggle('show',mode==='url');$('localTab').classList.toggle('active',mode==='file');$('urlTab').classList.toggle('active',mode==='url');$('msg').textContent=''}
+function openAdd(){$('in').value='';$('ff').value='';$('audioUrl').value='';$('fn').textContent='Pilih file musik...';$('msg').textContent='';setAddMode('file');$('md').classList.add('on')}
+function closeAdd(){$('md').classList.remove('on')}
+function chooseMusic(){const f=$('ff');f.click()}
+function musicChosen(e){const f=e.target.files&&e.target.files[0];if(f){$('fn').textContent=f.name;if(!$('in').value)$('in').value=f.name.replace(/\.[^.]+$/,'');$('msg').textContent='File siap dipilih'}}
+$('ff').addEventListener('change',musicChosen);
+async function save(){const n=$('in').value.trim(),f=$('ff').files[0],remote=$('audioUrl').value.trim();
+ if(!n)return $('msg').textContent='Nama sound wajib diisi';
+ if(addMode==='file'&&!f)return $('msg').textContent='Pilih file musiknya dulu';
+ if(addMode==='url'){
+  if(!remote)return $('msg').textContent='Tempel URL audio dulu';
+  if(!/^https?:\/\//i.test(remote))return $('msg').textContent='URL harus diawali http:// atau https://';
+  if(/(tiktok\.com|vm\.tiktok\.com|vt\.tiktok\.com)/i.test(remote))return $('msg').textContent='Link share TikTok tidak bisa langsung jadi sumber audio. Gunakan URL file audio langsung atau pilih file dari HP.';
+ }
+ $('sv').disabled=true;$('msg').textContent=addMode==='url'?'Mengecek URL audio...':'Menyimpan musik...';
+ if(addMode==='url'){
+  const test=new Audio();test.preload='metadata';test.src=remote;
+  const ok=await new Promise(resolve=>{let done=false;const finish=v=>{if(!done){done=true;clearTimeout(timer);test.oncanplay=null;test.onerror=null;resolve(v)}};const timer=setTimeout(()=>finish(false),8000);test.oncanplay=()=>finish(true);test.onerror=()=>finish(false);test.load()});
+  if(!ok){$('sv').disabled=false;return $('msg').textContent='URL gagal dibuka. Pastikan link audio langsung dan server mengizinkan pemutaran lintas situs (CORS).'}
+  await op('add',{name:n,remoteUrl:remote,type:'audio/remote'});
+ }else{
+  await op('add',{name:n,blob:f,type:f.type});
+ }
+ await load();$('sv').disabled=false;closeAdd();
+ if(!$('main').classList.contains('on'))go('main')}
+async function del(id,e){e.stopPropagation();const i=T.findIndex(x=>x.id===id);if(!confirm('Hapus "'+T[i].name+'"?'))return;
+ if(i===cur){stop();cur=-1}else if(i<cur)cur--;await op('delete',id);await load()}
+function fmt(s){s=Math.floor(s||0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+function draw(){const q=$('q').value.toLowerCase();let h='';
+ T.forEach((t,i)=>{if(q&&!t.name.toLowerCase().includes(q))return;h+=`<div class="row${i===cur?' act':''}" onclick="play(${i})"><span>${String(i+1).padStart(3,'0')} - ${t.name.replace(/</g,'&lt;')}</span><button onclick="del(${t.id},event)">🗑</button></div>`});
+ $('list').innerHTML=h||'<div class="empty">'+(T.length?'Tidak ada hasil.':'Belum ada sound.<br>Tekan <b>+ ADD</b> untuk upload sound pertama kamu.')+'</div>';
+ $('nm').textContent=cur>=0?T[cur].name:'Belum ada sound';$('pb').textContent=playing?'⏸':'▶';$('eq').classList.toggle('on',playing);if(cur>=0&&T[cur])$('tp').textContent=(T[cur].remoteUrl?'ONLINE • ':'OFFLINE • ')+'TEMPO: '+Math.round(130*rate)+(rate===1?' AUTO':'')+' • '+mode+' NOT'}
+function stop(){a.pause();playing=false;draw()}
+function play(i){if(!T[i])return;cur=i;if(url){URL.revokeObjectURL(url);url=null}if(T[i].remoteUrl){if(!navigator.onLine){toast('URL musik perlu internet');return}a.src=T[i].remoteUrl}else{url=URL.createObjectURL(T[i].blob);a.src=url}a.play().then(()=>{playing=true;draw()}).catch(()=>{playing=false;draw();toast('Musik gagal diputar. Cek koneksi atau URL audio')});draw()}
+function step(d){if(!T.length)return;play(sf?Math.floor(Math.random()*T.length):(cur+d+T.length)%T.length)}
+function toggle(){if(!T.length)return openAdd();if(cur<0)return play(0);if(playing){a.pause();playing=false}else{a.play();playing=true}draw()}
+a.onended=()=>{rp?play(cur):step(1)};
+a.ontimeupdate=()=>{$('sk').max=a.duration||100;$('sk').value=a.currentTime;$('t1').textContent=fmt(a.currentTime);$('t2').textContent=fmt(a.duration)};
+$('sk').oninput=e=>{a.currentTime=e.target.value};$('vl').oninput=e=>{a.volume=e.target.value};
+function tone(f,d){ac=ac||new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=f;o.connect(g);g.connect(ac.destination);const t=ac.currentTime;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.4,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.start(t);o.stop(t+d)}
+const NN=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+function hit(i,el){ac=ac||new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();const f=261.63*Math.pow(2,i/12),t=ac.currentTime,m=ac.createGain(),fl=ac.createBiquadFilter();fl.type='lowpass';fl.frequency.value=3500;m.connect(fl);fl.connect(ac.destination);m.gain.setValueAtTime(.0001,t);m.gain.exponentialRampToValueAtTime(.5,t+.008);m.gain.exponentialRampToValueAtTime(.0001,t+1.8);[1,2,3,4,5].forEach((h,k)=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f*h;g.gain.value=[1,.5,.25,.12,.06][k]*.35;o.connect(g);g.connect(m);o.start(t);o.stop(t+1.9)});el.classList.add('hit');setTimeout(()=>el.classList.remove('hit'),150);if(navigator.vibrate)navigator.vibrate(8)}
+$('grid').innerHTML=Array.from({length:24},(_,i)=>`<button class="pad" onpointerdown="hit(${i},this)">${i+1}<small>${NN[i%12]+(4+Math.floor(i/12))}</small></button>`).join('');
+let mode=48,rate=1,sleepT=null;
+function toast(m){const t=$('ts');t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),1800)}
+function tpd(){$('tp').textContent='TEMPO: '+Math.round(130*rate)+(rate===1?' AUTO':'')+' • '+mode+' NOT'}
+function sortAZ(){const c=cur>=0?T[cur]:null;T.sort((x,y)=>x.name.localeCompare(y.name));cur=c?T.indexOf(c):-1;draw();toast('Diurutkan A-Z')}
+async function delAll(){if(!T.length)return toast('Belum ada sound');if(!confirm('Hapus semua sound ('+T.length+')?'))return;stop();cur=-1;for(const t of T)await op('delete',t.id);await load();toast('Semua sound dihapus')}
+const ic=document.querySelectorAll('.ib i'),bd=document.querySelector('.ib b');
+ic[0].onclick=e=>{e.stopPropagation();$('mn').classList.toggle('on')};
+document.addEventListener('click',e=>{if(!$('mn').contains(e.target)&&!e.target.closest('.ib i'))$('mn').classList.remove('on')});
+$('mn').addEventListener('click',e=>e.stopPropagation());
+ic[1].onclick=async()=>{if(!navigator.bluetooth)return toast('Nyalakan Bluetooth lewat pengaturan HP');try{const d=await navigator.bluetooth.requestDevice({acceptAllDevices:true});ic[1].classList.add('act');toast('Terhubung: '+(d.name||'perangkat'))}catch(e){toast('Bluetooth dibatalkan')}};
+ic[2].onclick=()=>$('st').classList.add('on');
+ic[3].onclick=()=>{const d=document.documentElement;if(document.fullscreenElement)document.exitFullscreen();else if(d.requestFullscreen)d.requestFullscreen().catch(()=>toast('Layar penuh ditolak'));else toast('Layar penuh tidak didukung')};
+document.addEventListener('fullscreenchange',()=>ic[3].classList.toggle('act',!!document.fullscreenElement));
+function net(){ic[4].classList.toggle('act',navigator.onLine)}
+addEventListener('online',net);addEventListener('offline',net);net();
+ic[4].onclick=()=>toast(navigator.onLine?'Online':'Offline');
+if(navigator.getBattery)navigator.getBattery().then(b=>{const u=()=>ic[5].classList.toggle('act',b.charging);u();b.onchargingchange=u;ic[5].onclick=()=>toast('Baterai '+Math.round(b.level*100)+'%'+(b.charging?' (mengisi)':''))});else ic[5].onclick=()=>toast('Info baterai tidak tersedia');
+bd.onclick=()=>{mode=mode===48?36:mode+6;bd.textContent=mode+' NOT';tpd();toast('Mode '+mode+' NOT')};
+$('tr').oninput=e=>{rate=e.target.value/100;a.defaultPlaybackRate=a.playbackRate=rate;$('tv').textContent=e.target.value+'%';tpd()};
+$('tm').onchange=e=>{clearTimeout(sleepT);const m=+e.target.value;if(m){sleepT=setTimeout(()=>{stop();toast('Timer: musik dimatikan')},m*60000);toast('Mati otomatis '+m+' menit')}else toast('Timer dimatikan')};
+tpd();
+load();
+</script></body></html>
